@@ -1,65 +1,221 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나만의 프로필 사이트</title>
+    <title>PROJECT R.E.D. 공식 완구 정보 사이트</title>
     <style>
-        /* 최소한의 깔끔한 디자인을 위한 스타일 */
+        /* 폰트 및 초기화 설정 (반다이 사이트 특유의 깔끔한 고딕 폰트 적용) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-shadow: border-box;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #333;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            color: #333333;
         }
-        header {
+
+        /* 1. 최상단 얇은 유틸리티 바 */
+        .utility-bar {
+            display: table;
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 40px;
+        }
+        .utility-container {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .logo-area {
+            float: left;
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+            padding-top: 5px;
+        }
+        .logo-area span {
+            font-size: 11px;
+            color: #888;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        .right-brand {
+            float: right;
+            font-size: 14px;
+            font-weight: bold;
+            color: #e20011; /* 반다이 레드 */
+            padding-top: 5px;
+        }
+
+        /* 2. 메인 네비게이션 바 (GNB) */
+        .main-nav {
+            display: table;
+            width: 100%;
+            height: 55px;
+            background-color: #f7f7f7;
+            border-bottom: 3px solid #ff6600; /* 하단 오렌지색 포인트 라인 */
+        }
+        .nav-item {
+            display: table-cell;
+            width: 25%;
             text-align: center;
-            margin-bottom: 40px;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 14px;
+            color: #000000;
+            text-decoration: none;
+            border-right: 1px solid #e5e5e5;
+            cursor: pointer;
         }
-        section {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+        .nav-item:last-child {
+            border-right: none;
         }
-        ul {
-            padding-left: 20px;
+        .nav-item:hover {
+            background-color: #eeeeee;
         }
-        footer {
+
+        /* 3. 메인 배너 영역 (3분할 슬라이더 레이아웃) */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            background-color: #000000;
+            overflow: hidden;
+            font-size: 0; /* 이미지 간 미세 틈새 제거 */
+            white-space: nowrap;
+        }
+
+        .banner-cell {
+            display: inline-block;
+            vertical-align: top;
+            height: 450px; /* 원본 캡처 비율에 맞춘 높이 설정 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 왼쪽 사이드 컷 (예: 검을 쥔 손 이미지) */
+        .banner-left {
+            width: 20%;
+        }
+
+        /* 중앙 메인 대형 배너 (초우주형사 갸반 인피니티 포스터) */
+        .banner-main {
+            width: 55%;
+            position: relative;
+        }
+
+        /* 오른쪽 사이드 컷 (프리미엄 반다이 & 공식 캐릭터 완구 배너) */
+        .banner-right {
+            width: 25%;
+        }
+
+        /* 배너 내부의 이미지 요소 스타일 */
+        .banner-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 4. 화면 제어 요소 (좌우 화살표 및 하단 재생/일시정지 콘트롤러) */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 18px;
             text-align: center;
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 40px;
+            line-height: 31px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .arrow-left { left: 21%; } /* 중앙 배너의 왼쪽 경계면 */
+
+        .controls {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #ffffff;
+        }
+        .control-btn {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #777777;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            color: #333333;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+        .control-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* 하단 콘텐츠 예시 공간 */
+        .content-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            height: 200px;
+            border-top: 1px dashed #cccccc;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>👋 안녕하세요, 이예린입니다</h1>
-        <p>기록하고 성장하는 것을 좋아하는 학생입니다.</p>
-    </header>
+    <div class="utility-bar">
+        <div class="utility-container">
+            <div class="logo-area">
+                <strong>PROJECT R.E.D. 슈퍼 전대 시리즈</strong> 
+                <span>반다이 공식 PROJECT R.E.D. 슈퍼 완구 특설 사이트</span>
+            </div>
+            <div class="right-brand">
+                BANDAI TOYS
+            </div>
+        </div>
+    </div>
 
-    <section>
-        <h2>소개</h2>
-        <p>여기에 본인을 소개하는 간단한 글을 적어보세요. 좋아하는 취미나 공부하고 있는 분야를 적으면 좋습니다.</p>
-    </section>
+    <div class="main-nav">
+        <div class="nav-item">トピックス (토픽)</div>
+        <div class="nav-item">商品を探す (상품 찾기)</div>
+        <div class="nav-item">動画 (동영상)</div>
+        <div class="nav-item">開発者ブログ (개발자 블로그)</div>
+    </div>
 
-    <section>
-        <h2>링크</h2>
-        <ul>
-            <li><a href="https://github.com" target="_blank">내 깃허브 주소</a></li>
-            <li><a href="https://instagram.com" target="_blank">인스타그램</a></li>
-        </ul>
-    </section>
+    <div class="banner-container">
+        
+        <div class="banner-cell banner-left">
+            <img src="image1.jpg" alt="Side Cut Left">
+        </div>
 
-    <footer>
-        <p>© 2026 홍길동. Built with GitHub Pages.</p>
-    </footer>
+        <div class="banner-cell banner-main">
+            <div class="arrow-btn arrow-left">‹</div>
+            <img src="image2.jpg" alt="Main Banner - Gavan Infinity">
+        </div>
+
+        <div class="banner-cell banner-right">
+            <img src="image3.jpg" alt="Side Cut Right">
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <div class="control-btn">▶</div>
+        <div class="control-btn">❚❚</div>
+    </div>
+
+    <div class="content-section"></div>
 
 </body>
 </html>
