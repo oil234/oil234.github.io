@@ -9,7 +9,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
     <style>
-        /* 기존 폰트 및 초기화 설정 유지 */
         * {
             margin: 0;
             padding: 0;
@@ -22,24 +21,20 @@
             color: #333333;
         }
 
-        /* 상단 유틸리티 바 유지 */
+        /* 최상단 유틸리티 바 */
         .utility-bar {
-            display: table;
             width: 100%;
             height: 40px;
             border-bottom: 1px solid #e0e0e0;
             padding: 0 40px;
-        }
-        .utility-container {
-            display: table-cell;
-            vertical-align: middle;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .logo-area {
-            float: left;
             font-size: 13px;
             font-weight: bold;
             color: #444;
-            padding-top: 5px;
         }
         .logo-area span {
             font-size: 11px;
@@ -48,30 +43,27 @@
             margin-left: 10px;
         }
         .right-brand {
-            float: right;
             font-size: 14px;
             font-weight: bold;
             color: #e20011;
-            padding-top: 5px;
         }
 
-        /* 메인 네비게이션 바 유지 */
+        /* 메인 네비게이션 바 */
         .main-nav {
-            display: table;
+            display: flex;
             width: 100%;
             height: 55px;
             background-color: #f7f7f7;
             border-bottom: 3px solid #ff6600;
         }
         .nav-item {
-            display: table-cell;
-            width: 25%;
-            text-align: center;
-            vertical-align: middle;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
             font-size: 14px;
             color: #000000;
-            text-decoration: none;
             border-right: 1px solid #e5e5e5;
             cursor: pointer;
         }
@@ -82,53 +74,47 @@
             background-color: #eeeeee;
         }
 
-        /* 메인 배너 영역 구조 유지 */
+        /* ★ 변경된 배너 컨테이너: Flexbox 구조로 대폭 개편 */
         .banner-container {
-            position: relative;
+            display: flex;
             width: 100%;
+            height: 500px; /* 기존보다 살짝 키워 로드뷰 몰입감 극대화 */
             background-color: #000000;
-            overflow: hidden;
-            font-size: 0;
-            white-space: nowrap;
         }
 
-        .banner-cell {
-            display: inline-block;
-            vertical-align: top;
-            height: 450px;
-        }
-
-        /* 왼쪽 사이드 컷 유지 */
+        /* 왼쪽 사이드 컷 (비율 유지 고정) */
         .banner-left {
-            width: 20%;
+            flex: 2; 
+            overflow: hidden;
         }
 
-        /* 중앙 메인 배너 (여기를 VR 영역으로 변경) */
+        /* 중앙 메인 VR 로드뷰 창 (가장 넓은 면적 차지) */
         .banner-main {
-            width: 55%;
+            flex: 5;
             position: relative;
         }
 
-        /* 오른쪽 사이드 컷 유지 */
+        /* 오른쪽 사이드 컷 (비율 유지 고정) */
         .banner-right {
-            width: 25%;
+            flex: 2.5;
+            overflow: hidden;
         }
 
-        /* 일반 이미지 스타일 */
+        /* 이미지 반응형 채우기 설정 */
         .banner-cell img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        /* 2. VR 창 스타일 설정 (중앙 배너 크기에 딱 맞춤) */
+        /* VR 컨테이너 스타일 */
         #panorama {
             width: 100%;
             height: 100%;
-            background-color: #000;
         }
 
-        /* 기존 콘트롤러 및 하단 여백 유지 */
+        /* 하단 컨트롤러 및 여백 */
         .controls {
             width: 100%;
             text-align: center;
@@ -160,28 +146,24 @@
 <body>
 
     <div class="utility-bar">
-        <div class="utility-container">
-            <div class="logo-area">
-                <strong>PROJECT R.E.D. 슈퍼 전대 시리즈</strong> 
-                <span>반다이 공식 PROJECT R.E.D. 슈퍼 완구 특설 사이트</span>
-            </div>
-            <div class="right-brand">
-                BANDAI TOYS
-            </div>
+        <div class="logo-area">
+            <strong>PROJECT R.E.D. 슈퍼 전대 시리즈</strong> 
+            <span>반다이 공식 PROJECT R.E.D. 슈퍼 완구 특설 사이트</span>
         </div>
+        <div class="right-brand">BANDAI TOYS</div>
     </div>
 
     <div class="main-nav">
-        <div class="nav-item">トピックス (토픽)</div>
-        <div class="nav-item">商品を探す (상품 찾기)</div>
-        <div class="nav-item">動画 (동영상)</div>
-        <div class="nav-item">開発者ブログ (개발자 블로그)</div>
+        <div class="nav-item">トピックス</div>
+        <div class="nav-item">商品を探す</div>
+        <div class="nav-item">動画</div>
+        <div class="nav-item">開発者ブログ</div>
     </div>
 
     <div class="banner-container">
         
         <div class="banner-cell banner-left">
-            <img src="image1.jpg" alt="Side Cut Left">
+            <img src="image1.jpg" alt="Side Left">
         </div>
 
         <div class="banner-cell banner-main">
@@ -189,7 +171,7 @@
         </div>
 
         <div class="banner-cell banner-right">
-            <img src="image3.jpg" alt="Side Cut Right">
+            <img src="image3.jpg" alt="Side Right">
         </div>
 
     </div>
@@ -204,12 +186,6 @@
     <script>
         pannellum.viewer('panorama', {
             "type": "equirectangular",
-            "panorama": "vr.jpg", // 준비하신 VR 이미지 파일명
-            "autoLoad": true,       // 페이지 열리자마자 자동으로 로드
-            "compass": false,       // 나침반 표시 안함
-            "showControls": false   // pannellum 자체 기본 버튼 숨김 (디자인 일체감을 위해)
-        });
-    </script>
-
-</body>
-</html>
+            "panorama": "vr.jpg",
+            "autoLoad": true,
+            "showControls": true // 로드뷰 느낌
