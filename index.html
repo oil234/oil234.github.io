@@ -67,6 +67,7 @@
             color: #000000;
             border-right: 1px solid #e5e5e5;
             cursor: pointer;
+            text-decoration: none; /* 글자 밑줄 제거 */
         }
         .nav-item:last-child {
             border-right: none;
@@ -79,29 +80,25 @@
         .banner-container {
             display: flex;
             width: 100%;
-            height: 500px; /* 로드뷰 시야각을 확보하기 위한 최적의 높이 */
+            height: 500px;
             background-color: #000000;
         }
 
-        /* 좌측 이미지 영역 */
         .banner-left {
             flex: 2; 
             overflow: hidden;
         }
 
-        /* 중앙 메인 VR 로드뷰 영역 */
         .banner-main {
             flex: 5;
             position: relative;
         }
 
-        /* 우측 이미지 영역 */
         .banner-right {
             flex: 2.5;
             overflow: hidden;
         }
 
-        /* 양옆 사이드 이미지용 반응형 스타일 */
         .banner-cell img {
             width: 100%;
             height: 100%;
@@ -109,7 +106,6 @@
             display: block;
         }
 
-        /* VR 컨테이너 채우기 */
         #panorama {
             width: 100%;
             height: 100%;
@@ -155,14 +151,14 @@
     </div>
 
     <div class="main-nav">
-        <div class="nav-item">トピックス</div>
+        <a href="topics.html" class="nav-item">トピックス</a>
+        
         <div class="nav-item">商品を探す</div>
         <div class="nav-item">動画</div>
         <div class="nav-item">開発者ブログ</div>
     </div>
 
     <div class="banner-container">
-        
         <div class="banner-cell banner-left">
             <img src="image1.jpg" alt="Side Left">
         </div>
@@ -174,7 +170,6 @@
         <div class="banner-cell banner-right">
             <img src="image3.jpg" alt="Side Right">
         </div>
-
     </div>
 
     <div class="controls">
@@ -187,9 +182,9 @@
     <script>
         pannellum.viewer('panorama', {
             "type": "equirectangular",
-            "panorama": "vr.jpg",   // 마우스로 제어할 VR 이미지 파일
-            "autoLoad": true,       // 사이트 접속 시 자동 로딩
-            "showControls": true    // 우측 하단 로드뷰 확대/축소(+,-) UI 활성화
+            "panorama": "vr.jpg",
+            "autoLoad": true,
+            "showControls": true
         });
     </script>
 
