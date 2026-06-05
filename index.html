@@ -9,6 +9,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
     <style>
+        /* 기본 초기화 및 폰트 세팅 */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +22,7 @@
             color: #333333;
         }
 
-        /* 최상단 유틸리티 바 */
+        /* 1. 최상단 유틸리티 바 */
         .utility-bar {
             width: 100%;
             height: 40px;
@@ -48,7 +49,7 @@
             color: #e20011;
         }
 
-        /* 메인 네비게이션 바 */
+        /* 2. 메인 네비게이션 바 */
         .main-nav {
             display: flex;
             width: 100%;
@@ -74,33 +75,33 @@
             background-color: #eeeeee;
         }
 
-        /* ★ 변경된 배너 컨테이너: Flexbox 구조로 대폭 개편 */
+        /* 3. 3분할 플렉스 배너 레이아웃 구조 */
         .banner-container {
             display: flex;
             width: 100%;
-            height: 500px; /* 기존보다 살짝 키워 로드뷰 몰입감 극대화 */
+            height: 500px; /* 로드뷰 시야각을 확보하기 위한 최적의 높이 */
             background-color: #000000;
         }
 
-        /* 왼쪽 사이드 컷 (비율 유지 고정) */
+        /* 좌측 이미지 영역 */
         .banner-left {
             flex: 2; 
             overflow: hidden;
         }
 
-        /* 중앙 메인 VR 로드뷰 창 (가장 넓은 면적 차지) */
+        /* 중앙 메인 VR 로드뷰 영역 */
         .banner-main {
             flex: 5;
             position: relative;
         }
 
-        /* 오른쪽 사이드 컷 (비율 유지 고정) */
+        /* 우측 이미지 영역 */
         .banner-right {
             flex: 2.5;
             overflow: hidden;
         }
 
-        /* 이미지 반응형 채우기 설정 */
+        /* 양옆 사이드 이미지용 반응형 스타일 */
         .banner-cell img {
             width: 100%;
             height: 100%;
@@ -108,13 +109,13 @@
             display: block;
         }
 
-        /* VR 컨테이너 스타일 */
+        /* VR 컨테이너 채우기 */
         #panorama {
             width: 100%;
             height: 100%;
         }
 
-        /* 하단 컨트롤러 및 여백 */
+        /* 4. 하단 콘트롤러 및 레이아웃 여백 */
         .controls {
             width: 100%;
             text-align: center;
@@ -186,6 +187,11 @@
     <script>
         pannellum.viewer('panorama', {
             "type": "equirectangular",
-            "panorama": "vr.jpg",
-            "autoLoad": true,
-            "showControls": true // 로드뷰 느낌
+            "panorama": "vr.jpg",   // 마우스로 제어할 VR 이미지 파일
+            "autoLoad": true,       // 사이트 접속 시 자동 로딩
+            "showControls": true    // 우측 하단 로드뷰 확대/축소(+,-) UI 활성화
+        });
+    </script>
+
+</body>
+</html>
