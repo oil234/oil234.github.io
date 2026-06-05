@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT R.E.D. 공식 완구 정보 사이트</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+        /* 기본 초기화 및 폰트 세팅 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        /* 1. 최상단 유틸리티 바 */
+        .utility-bar {
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-area {
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+        }
+        .logo-area span {
+            font-size: 11px;
+            color: #888;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        .right-brand {
+            font-size: 14px;
+            font-weight: bold;
+            color: #e20011;
+        }
+
+        /* 2. 메인 네비게이션 바 */
+        .main-nav {
+            display: flex;
+            width: 100%;
+            height: 55px;
+            background-color: #f7f7f7;
+            border-bottom: 3px solid #ff6600;
+        }
+        .nav-item {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #000000;
+            border-right: 1px solid #e5e5e5;
+            cursor: pointer;
+            text-decoration: none; /* 링크 밑줄 제거 */
+        }
+        .nav-item:last-child {
+            border-right: none;
+        }
+        .nav-item:hover {
+            background-color: #eeeeee;
+        }
+
+        /* 3. 3분할 플렉스 배너 레이아웃 구조 */
+        .banner-container {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            background-color: #000000;
+        }
+
+        .banner-left {
+            flex: 2; 
+            overflow: hidden;
+        }
+
+        .banner-main {
+            flex: 5;
+            position: relative;
+        }
+
+        .banner-right {
+            flex: 2.5;
+            overflow: hidden;
+        }
+
+        .banner-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #panorama {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 4. 하단 콘트롤러 및 레이아웃 여백 */
+        .controls {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #ffffff;
+        }
+        .control-btn {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #777777;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            color: #333333;
+            cursor: pointer;
+            background-color: #ffffff;
+        }
+        .content-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            height: 200px;
+            border-top: 1px dashed #cccccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="utility-bar">
+        <div class="logo-area">
+            <strong>PROJECT R.E.D. 슈퍼 전대 시리즈</strong> 
+            <span>반다이 공식 PROJECT R.E.D. 슈퍼 완구 특설 사이트</span>
+        </div>
+        <div class="right-brand">BANDAI TOYS</div>
+    </div>
+
+    <div class="main-nav">
+        <a href="https://github.com" target="_blank" class="nav-item">トピックス</a>
+        
+        <div class="nav-item">商品を探す</div>
+        <div class="nav-item">動画</div>
+        <div class="nav-item">開発者ブログ</div>
+    </div>
+
+    <div class="banner-container">
+        <div class="banner-cell banner-left">
+            <img src="image1.jpg" alt="Side Left">
+        </div>
+
+        <div class="banner-cell banner-main">
+            <div id="panorama"></div>
+        </div>
+
+        <div class="banner-cell banner-right">
+            <img src="image3.jpg" alt="Side Right">
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="control-btn">▶</div>
+        <div class="control-btn">❚❚</div>
+    </div>
+
+    <div class="content-section"></div>
+
+    <script>
+        pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "panorama": "vr.jpg",
+            "autoLoad": true,
+            "showControls": true
+        });
+    </script>
+
+</body>
+</html>
